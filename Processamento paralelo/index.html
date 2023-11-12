@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividade JS</title>
+</head>
+<body>
+  <script>
+    // Cria um novo Worker
+    const myWorker = new Worker('worker.js');
+
+    // Dados para processar em paralelo
+    const inputData = [1, 2, 3, 4, 5];
+
+    // Envia os dados para o Worker
+    myWorker.postMessage(inputData);
+
+    // Recebe o resultado do Worker
+    myWorker.addEventListener('message', function(e) {
+      const result = e.data;
+      console.log('Resultado do processamento paralelo:', result);
+
+      // Encerra o Worker após a conclusão do trabalho
+      myWorker.terminate();
+    });
+  </script>
+</body>
+</html>
